@@ -15,6 +15,6 @@ CREATE TABLE tbl_products (
   stock DOUBLE,
   price DOUBLE,
   status VARCHAR(250) NOT NULL,
-  create_at TIMESTAMP,
+  created_at TIMESTAMP,
   category_id BIGINT
 );
