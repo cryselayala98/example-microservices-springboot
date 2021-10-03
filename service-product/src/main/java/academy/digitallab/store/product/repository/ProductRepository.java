@@ -1,8 +1,8 @@
-package academy.digitallab.store.serviceproduct.repository;
+package academy.digitallab.store.product.repository;
 
 
-import academy.digitallab.store.serviceproduct.entity.Category;
-import academy.digitallab.store.serviceproduct.entity.Product;
+import academy.digitallab.store.product.entity.Category;
+import academy.digitallab.store.product.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

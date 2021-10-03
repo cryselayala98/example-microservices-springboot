@@ -1,4 +1,4 @@
-package academy.digitallab.store.serviceproduct.entity;
+package academy.digitallab.store.product.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
