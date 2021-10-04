@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: git@github.com:cryselayala98/example-microservices-springboot.git
+          uri: git@github.com:cryselayala98/example-microservices-springboot.git 
           searchPaths: config-data
           user: ${GIT_USER_PERSONAL}
           private_key_file: ${PATH_PRIVATE_KEY_PERSONAL}
