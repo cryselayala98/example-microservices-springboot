@@ -6,10 +6,10 @@ spring:
       server:
         git:
           uri: https://github.com/cryselayala98/example-microservices-springboot.git
-          searchPath: config-data
-            username: ${GIT_USER_PERSONAL}
-            password: ${GIT_PASSWORD_PERSONAL}
+          searchPaths: config-data
+          username: ${GIT_USER_PERSONAL}
+          password: ${GIT_PASSWORD_PERSONAL}
 security:
   user:
     name: root
-    password: s3cr3t 
+    password: s3cr3t
