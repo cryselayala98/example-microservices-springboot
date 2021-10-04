@@ -14,7 +14,7 @@ spring:
           hostKeyAlgorithm: ssh-rsa
           #username: ${GIT_USER_PERSONAL}
           #password: ${GIT_PASSWORD_PERSONAL}
-#security:
-  #user:
-    #name: root
-    #password: s3cr3t
+  security:
+    user:
+      name: root
+      password: s3cr3t
