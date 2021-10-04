@@ -5,10 +5,13 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/cryselayala98/example-microservices-springboot.git
+          uri: git@github.com:cryselayala98/example-microservices-springboot.git
           searchPaths: config-data
-          username: ${GIT_USER_PERSONAL}
-          password: ${GIT_PASSWORD_PERSONAL}
+          user: ${GIT_USER_PERSONAL}
+          private_key_file: ${PATH_PRIVATE_KEY_PERSONAL}
+          strictHostKeyChecking: false
+          #username: ${GIT_USER_PERSONAL}
+          #password: ${GIT_PASSWORD_PERSONAL}
 security:
   user:
     name: root
