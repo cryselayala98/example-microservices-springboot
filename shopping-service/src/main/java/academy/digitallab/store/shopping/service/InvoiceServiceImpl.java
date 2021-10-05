@@ -89,7 +89,8 @@ public class InvoiceServiceImpl implements InvoiceService {
         Invoice invoice = invoiceRepository.findById(id).orElse(null);
 
         if(invoice != null){
-            //buscar customer
+
+            //buscar cliente
             Customer customer = customerClient.getCustomer(invoice.getCustomerId()).getBody();
             invoice.setCustomer(customer);
 

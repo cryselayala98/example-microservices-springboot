@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 //cliente de servicio rest para comunicarse con los demas microservicios (feign)
-@FeignClient(name="customer-service")
-@RequestMapping("/customers")
+
+//@RequestMapping("/customers")
+@FeignClient(name="customer-service", fallback = CustomerHystrixFallbackFactory.class)
 public interface CustomerClient {
 
     @GetMapping(value = "/{id}")
