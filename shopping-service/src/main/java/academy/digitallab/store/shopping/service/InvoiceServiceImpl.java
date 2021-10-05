@@ -1,5 +1,10 @@
 package academy.digitallab.store.shopping.service;
 
+import academy.digitallab.store.shopping.client.CustomerClient;
+import academy.digitallab.store.shopping.client.ProductClient;
+import academy.digitallab.store.shopping.entity.InvoiceItem;
+import academy.digitallab.store.shopping.model.Customer;
+import academy.digitallab.store.shopping.model.Product;
 import academy.digitallab.store.shopping.repository.InvoiceItemsRepository;
 import academy.digitallab.store.shopping.repository.InvoiceRepository;
 import academy.digitallab.store.shopping.entity.Invoice;
@@ -9,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -25,6 +31,11 @@ public class InvoiceServiceImpl implements InvoiceService {
         return  invoiceRepository.findAll();
     }
 
+    @Autowired
+    CustomerClient customerClient;
+
+    @Autowired
+    ProductClient productClient;
 
     @Override
     public Invoice createInvoice(Invoice invoice) {
@@ -33,7 +44,15 @@ public class InvoiceServiceImpl implements InvoiceService {
             return  invoiceDB;
         }
         invoice.setState("CREATED");
-        return invoiceRepository.save(invoice);
+        invoiceDB = invoiceRepository.save(invoice);
+
+        invoiceDB.getItems().forEach(item ->{
+            //actualizar stock en el service de producto
+           productClient.updateStockProduct(item.getProductId(), item.getQuantity() * -1);
+        });
+
+
+        return invoiceDB;
     }
 
 
@@ -64,6 +83,26 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public Invoice getInvoice(Long id) {
-        return invoiceRepository.findById(id).orElse(null);
+
+        Invoice invoice = invoiceRepository.findById(id).orElse(null);
+
+        if(invoice != null){
+            //buscar customer
+            Customer customer = customerClient.getCustomer(invoice.getCustomerId()).getBody();
+            invoice.setCustomer(customer);
+
+            //recuperar datos de productos de la factura
+
+            List<InvoiceItem> listItem= invoice.getItems().stream().map(item ->{
+                //esta seccion de codigo devuelve un flujo
+                Product product = productClient.getProduct(item.getProductId()).getBody();
+                item.setProduct(product);
+                return item;
+            }).collect(Collectors.toList());
+
+            invoice.setItems(listItem);
+        }
+
+        return invoice;
     }
 }
