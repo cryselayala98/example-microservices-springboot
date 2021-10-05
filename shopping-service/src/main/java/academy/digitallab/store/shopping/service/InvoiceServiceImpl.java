@@ -40,9 +40,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public Invoice createInvoice(Invoice invoice) {
         Invoice invoiceDB = invoiceRepository.findByNumberInvoice ( invoice.getNumberInvoice () );
+
         if (invoiceDB !=null){
             return  invoiceDB;
         }
+
         invoice.setState("CREATED");
         invoiceDB = invoiceRepository.save(invoice);
 
