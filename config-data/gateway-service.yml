@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+eureka: # conectarse a eureka server
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8099/eureka/
+
+spring: # config del gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes: # registro tal como estaria registrado en el registry service
+        - id: customer-service
+          uri: lb://customer-service
+          predicates:
+            - Path=/customers/**
+        - id: service-product
+          uri: lb://service-product
+          predicates:
+            - Path=/products/**
+        - id: shopping-service
+          uri: lb://shopping-service
+          predicates:
+            - Path=/invoices/**
