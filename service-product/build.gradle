@@ -28,6 +28,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	implementation group: 'de.codecentric', name:'spring-boot-admin-starter-client', version: '2.4.1'
 	//implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
@@ -37,6 +38,7 @@ dependencies {
 	compileOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+
 }
 
 dependencyManagement {
