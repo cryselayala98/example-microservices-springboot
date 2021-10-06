@@ -54,7 +54,7 @@ public class CustomerRest {
     // -------------------Retrieve Single Customer------------------------------------------
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Customer> getCustomer(@PathVariable("id") long id) {
+    public ResponseEntity<Customer> getCustomer(@PathVariable("id") Long id) {
         log.info("Fetching Customer with id {}", id);
         Customer customer = customerService.getCustomer(id);
         if (  null == customer) {

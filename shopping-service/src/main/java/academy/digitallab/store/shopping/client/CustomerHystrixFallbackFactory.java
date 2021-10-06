@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomerHystrixFallbackFactory implements  CustomerClient{
     @Override
-    public ResponseEntity<Customer> getCustomer(long id) {
+    public ResponseEntity<Customer> getCustomer(Long id) {
         Customer customer = Customer.builder()
                 .firstName("none")
                 .lastName("none")
